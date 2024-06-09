@@ -1,0 +1,48 @@
+
+@use "./colors.scss" as *;
+
+@mixin bg-color {
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #eee;
+    height: 850px;
+    background-position: center center;
+
+}
+
+@mixin heading2 {
+    font-size: 7.8rem;
+    font-weight: 400;
+    font-family: 'Kristi', handwriting;
+    text-transform: none;
+    margin: 0;
+    color: #4d0035;
+}
+
+@mixin heading3 {
+    line-height: 3.29em;
+    color: #4d0035;
+    font-size: 18px;
+}
+
+@mixin small-line {
+    width: 40px;
+    height: 3px;
+    background-color: $secondary-color;
+}
+
+@mixin paragraph {
+    color: $secondary-color;
+    margin-bottom: 30px;
+    line-height: 2em;
+}
+
+@mixin text-span {
+    color: #4d0035;
+    font-size: 1.875rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+
+

@@ -1,0 +1,507 @@
+
+@use "./colors.scss" as *;
+@use "./mixins.scss" as *;
+@use "./media-queries.scss" as *;
+* {
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+    user-select: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+header {
+    background-image: url(../images/bg-1.png);
+
+    @include bg-color;
+
+    nav {
+        padding: 20px 25px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+            width: 120px;
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            width: 40rem;
+            list-style: none;
+            @include breakpoints(small) {
+            
+                display: none;
+          
+        }
+            li {
+                a {
+                    text-decoration: none;
+                    color: #eee;
+                }
+            }
+        }
+    }
+
+    section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        user-select: none;
+
+        p {
+            font-size: 30px;
+            font-weight: 600;
+
+        }
+        .typing {
+            width: 300px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #7E2EA0;
+            animation: typing 2s steps(12, end), cursor .2s steps(12, end) infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+        }
+        @keyframes cursor {
+            50% { border-color: transparent }
+        }
+        h1 {
+            font-size: 320px;
+            margin: 30px;
+            font-weight: 400;
+            font-family: 'Kristi', handwriting;
+            text-transform: none;
+            @include breakpoints(small) {
+                font-size: 240px;
+                margin: 20px;
+                font-family: 'Kristi', handwriting;
+            }
+        }
+
+        .wrapper {
+            a {
+                display: block;
+                width: 160px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+                text-decoration: none;
+                color: #ffffff;
+                border: 2px solid #ffffff;
+                letter-spacing: 1.5px;
+                text-align: center;
+                position: relative;
+                transition: all .35s;
+
+                &:hover {
+                    &::after {
+                        width: 100%;
+                    }
+                }
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    top: 0;
+                    left: 0;
+                    width: 0;
+                    height: 100%;
+                    background: $main-color;
+                    transition: all .35s;
+                }
+
+                span {
+                    position: relative;
+                    z-index: 2;
+                }
+            }
+        }
+    }
+}
+
+.section {
+    margin: 90px auto;
+    // @include breakpoints(small) {
+        // margin: 50px auto;
+
+// }
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .about-cont {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        // width: 88%;
+        @include breakpoints(small) {
+            flex-direction: column;
+            // width: 100%;
+            text-align: center;
+}
+
+        img {
+            max-width: 100%;
+        }
+
+        .info {
+            width: 60%;
+            @include breakpoints(small) {
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+      
+    }
+            h2 {
+                @include heading2
+            }
+
+            .small-line {
+                @include small-line
+            }
+
+            h3 {
+                @include heading3
+            }
+
+            p {
+                @include paragraph
+            }
+        }
+    }
+}
+
+.services-section {
+    width: 88%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h2 {
+        @include heading2;
+    }
+
+    .small-line {
+        @include small-line;
+        margin: 20px auto;
+    }
+
+    p {
+        @include paragraph;
+    }
+
+    .services-cont {
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 60px;
+
+        div {
+            img {
+                margin: 30px auto;
+            }
+
+            h3 {
+                @include heading3
+            }
+
+        }
+    }
+}
+
+.skills-section {
+    background-image: url(../images/bg-2.png);
+    @include bg-color;
+    // height: 900px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .skills-cont {
+        width: 88%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+
+        .left {
+            text-align: end;
+            width: 500px;
+
+            h2 {
+                @include heading2;
+                color: #eee;
+            }
+
+            p {
+                @include paragraph;
+                color: #eee;
+            }
+
+        }
+
+        .right {
+            width: 500px;
+            padding: 30px;
+            background-color: #eee;
+            color: rgb(146, 2, 2);
+
+            div {
+                margin: 25px;
+                $skills : (1: 75%, 2: 50%, 3: 90%, 4: 40%);
+                @each $id ,
+                $percent in $skills {
+                    .skill-num#{$id} {
+                        width: 100%;
+                        height: 25px;
+                        background-color: $light-pink;
+                        display: block;
+                        margin: 6px auto;
+                        position: relative;
+                        &::before {
+                            content: "#{$percent}";
+                            position: absolute;
+                            top: 3px;
+                            left: 8px;
+                            z-index: 6;
+                            color: $white-color;
+                            height: 100%;
+                        }
+                        &::after {
+                            content: "";
+                            width: $percent;
+                            height: 100%;
+                            background-color: $main-color;
+                            position: absolute;
+                        }
+                    }
+                }
+                .btn {
+                    margin: 0;
+                    line-height: 50px;
+                    height: 50px;
+                    text-align: center;
+                    width: 100%;
+                    cursor: pointer;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+.portfolio-section {
+    width: 88%;
+    h2 {
+        @include heading2;
+        text-align: center;
+        margin: 0
+    }
+    .small-line {
+        @include small-line;
+    }
+    img {
+        width: 100%;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -ms-transition: all 0.5s;
+        -o-transition: all 0.5s;
+}
+    .image-box {
+        width: 100%;
+        overflow: hidden;
+
+    }
+    img:hover {
+        scale: 1.1;
+    }
+
+    .images-cont {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+        justify-items: center;
+        gap: 30px;
+        @include breakpoints(small) {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  
+}
+    }
+}
+.testimonials-section {
+    .head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        h2 {
+            @include heading2;
+        }
+        .small-line {
+            @include small-line;
+        }
+        p {
+            @include paragraph;
+            width: 600px;
+        }
+    }
+    .people-section {
+        // display: flex;
+        // justify-content: space-evenly;
+        // align-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        justify-items: center;
+        gap: 30px;
+        @include breakpoints(small) {
+    @include breakpoints(small) {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        flex-wrap: wrap;
+  
+}  
+}
+        div {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            img {
+                border-radius: 50%;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                -ms-border-radius: 50%;
+                -o-border-radius: 50%;
+                box-shadow: 0px 27px 38px -21px #ff4fc7;
+                transition: all 0.3s;
+                -webkit-transition: all 0.3s;
+                -moz-transition: all 0.3s;
+                -ms-transition: all 0.3s;
+                -o-transition: all 0.3s;
+}
+            img:hover {
+    transform: translateY(-10px);
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+}
+            p {
+                @include paragraph;
+                text-align: center;
+            }
+            .small-line {
+                @include small-line;
+            }
+            h3 {
+                @include heading3
+            }
+        }
+    }
+}
+.contact-section {
+    background-image: url(../images/bg-3.png);
+    @include bg-color;
+
+    height: 1100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+
+    h2 {
+        @include heading2;
+        text-align: center;
+    }
+    .small-line {
+        @include small-line;
+    }
+    .contact-cont {
+        background-color: $white-color;
+        width: 70rem;
+        @include breakpoints(small) {
+            width: 45rem;
+
+            }
+        border-radius: 12px;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        -ms-border-radius: 12px;
+        -o-border-radius: 12px;
+        padding: 40px;
+        display: flex;
+        justify-content: space-between;
+        gap: 90px;
+        span {
+            @include text-span;
+            @include breakpoints(small) {
+                font-size: 18px;
+                }
+        }
+        .left {
+            width: 50%;
+            span {
+                display: block;
+            }
+            form {
+                margin-top: 40px;
+            }
+            input,
+            textarea {
+                display: block;
+                width: 100%;
+                height: 50px;
+                margin-top: 20px;
+                font-size: 16px;
+                padding: 10px;
+                background-color: #f1f1f1;
+                border: 1px solid #cfcfcf;
+                &:focus {
+                    border: 1px dotted #434343;
+                    outline: none;
+                }
+            }
+            textarea {
+                height: 150px;
+            }
+        }
+        .right {
+            width: 50%;
+            .contact-info {
+                margin-top: 40px;
+                div:not(:last-child) {
+                    margin-bottom: 3rem
+                }
+                p {
+                    @include paragraph;
+                    &:last-child {
+                        margin-bottom: 0px;
+                    }
+                }
+            }
+        }
+    }
+}
